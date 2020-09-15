@@ -1,10 +1,10 @@
 import dns from 'dns';
-import net from 'net';
+import net, { Socket } from 'net';
 import tls from 'tls';
 import url from 'url';
 import createDebug from 'debug';
 import { Agent, ClientRequest, RequestOptions } from 'agent-base';
-import { SocksClient, SocksProxy, SocksClientOptions } from 'socks';
+import { SocksClient, SocksProxy, SocksClientOptions, } from 'socks';
 import { SocksProxyAgentOptions } from '.';
 
 const debug = createDebug('socks-proxy-agent');
@@ -134,6 +134,7 @@ export default class SocksProxyAgent extends Agent {
 		const parsedProxy = parseSocksProxy(opts);
 		this.lookup = parsedProxy.lookup;
 		this.proxy = parsedProxy.proxy;
+		this.freeSockets = {};
 	}
 
 	/**
