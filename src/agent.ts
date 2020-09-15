@@ -115,6 +115,7 @@ function parseSocksProxy(
 export default class SocksProxyAgent extends Agent {
 	private lookup: boolean;
 	private proxy: SocksProxy;
+	readonly freeSockets: NodeJS.ReadOnlyDict<Socket[]>;
 
 	constructor(_opts: string | SocksProxyAgentOptions) {
 		let opts: SocksProxyAgentOptions;
